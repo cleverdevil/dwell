@@ -1,0 +1,42 @@
+{% extends "shell.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/archive.css">
+{% endblock %}
+
+{% block title %}Jonathan LaCour - Archive{% endblock %}
+
+{% block main %}
+<div class="u-center">
+  <div class="frame mt-12 w-70p-lg w-100p-md min-w-xs">
+    <div class="frame__header px-4">
+      <div class="frame__title level">
+        <h3 class="level-item"><ion-icon class="level-item mr-1" name="archive-outline"></ion-icon> Archive</h3>
+      </div>
+    </div>
+    <div class="frame__body px-4">
+
+      {% for year in years %}
+        <div class="year">
+          <h4>{{ year['year'] }}</h4>
+          {% for month in year['months'] %}
+            <ul class="month">
+              <li class="month-name">
+                <a href="/archive/{{ year['year'] }}/{{ month['month'] }}">
+                  {{ month['name'] }}
+                </a>
+              </li>
+              {% for day in month['days'] %}
+                <li class="archive-day day-{{ day }}">
+                  <a href="/archive/{{ year['year'] }}/{{ month['month']}}/{{ day }}">{{ day }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

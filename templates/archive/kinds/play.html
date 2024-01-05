@@ -1,0 +1,7 @@
+<div id="played">
+{% for play in posts['play'] %} 
+  <a href="{{ play.url }}">
+    <div class="photo" style="background-image:url({{play.play_of.photo}}); background-size: cover; background-position: 50%"></div>
+  </a>
+{% endfor %}
+</div>

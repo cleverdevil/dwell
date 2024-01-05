@@ -1,0 +1,16 @@
+{% extends "shell.html" %}
+{% import "partials/paginate.html" as paginate %}
+
+{% block title %}Jonathan LaCour - Home{% endblock %}
+
+{% block main %}
+<div class="feed u-center w-70p-lg w-100p-md">
+    {% for post in posts %}
+      {% include "kinds/post.html" %}
+    {% endfor %}
+</div>
+
+{{ paginate.paginate(limit, offset, count) }}
+
+{% endblock %}
+

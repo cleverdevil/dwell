@@ -1,0 +1,8 @@
+<ul class="no-bullets m-0">
+{% for post in posts['like'] %}
+  <li class="m-0">
+    <ion-icon class="level-item mr-1" name="{{ post.icon }}"></ion-icon> 
+    <a href="{{ post.target }}">{{ post.name }}</a>
+  </li> 
+{% endfor %}
+</ul>

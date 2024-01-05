@@ -1,0 +1,33 @@
+.tab-container, .tab-item-content {
+  background: transparent !important;
+}
+
+#photos, #listened, #watched {
+  overflow: hidden;
+}
+#photos a, #listened a, #watched a {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  margin: 5px 5px 5px 0;
+}
+#photos .photo, #listened .photo, #watched .photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  transition: all 200ms ease-in-out;
+}
+#photos .photo:hover, #listened .photo:hover, #watched .photo:hover {
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+#watched a {
+  height: 150px !important;
+}
+
+#watched .photo {
+  height: 150px !important;
+}

@@ -1,0 +1,23 @@
+{% macro paginate(limit, offset, count) -%}
+
+{% set pages = g.math.ceil(count / g.float(limit)) %}
+{% set current_page = g.min(g.int(offset / limit) + 1, pages) %}
+{% set start = g.max(current_page - 5, 0) %}
+
+<div class="pagination pagination-bordered u-center m-2">
+  {% if offset > 0 %}
+  <div class="pagination-item short bg-white"><a href="?offset={{(current_page - 2) * limit}}">Prev</a></div>
+  {% endif %}
+  
+  {% for page in range(start+1, g.min(start + 11, pages)) %}
+  <div class="pagination-item short {{'selected' if current_page == page else 'bg-white'}}">
+    <a href="?offset={{g.min(((page-1)*limit), count)}}">{{ page }}</a>
+  </div>
+  {% endfor %}
+
+  {% if current_page < pages %}
+  <div class="pagination-item short bg-white"><a href="?offset={{current_page * limit}}">Next</a></div>
+  {% endif %}
+</div>
+
+{%- endmacro %}

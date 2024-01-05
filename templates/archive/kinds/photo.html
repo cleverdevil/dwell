@@ -1,0 +1,9 @@
+<div id="photos">
+{% for photo_post in posts['photo'] %}
+  {% for photo in photo_post.photos %}
+    <a href="{{ photo_post.url }}">
+      <div class="photo" style="background-image:url({{photo}}); background-size: cover; background-position: 50%"></div>
+    </a>
+  {% endfor %}
+{% endfor %}
+</div>

@@ -1,0 +1,18 @@
+{% extends "shell.html" %}
+{% import "partials/paginate.html" as paginate %}
+
+{% block title %}Jonathan LaCour - Archive - {{ month }}/{{ day }}/{{ year }}{% endblock %}
+
+{% block main %}
+
+<div class="feed u-center w-70p-lg w-100p-md min-w-xs">
+  <h3 class="bg-white u-bg-opacity-80 px-3 py-2">
+    Archive: {{ month }}/{{ day }}/{{ year }}
+  </h3>
+  
+  {% for post in posts %}
+    {% include "kinds/post.html" %}
+  {% endfor %}
+</div>
+
+{% endblock %}

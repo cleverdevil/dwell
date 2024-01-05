@@ -1,0 +1,60 @@
+{% import "partials/map.html" as map %}
+
+{% block header %}
+{% endblock %}
+
+<div class="post-details max-w-md">
+  {% if post.comments or post.likes %}
+
+  <div class="card">
+    <div class="card__header">
+      <p class="font-bold px-3">Interactions</p>
+    </div>
+    <div class="content">
+      <div class="pt-3"></div>
+    
+      {% for like in post.likes %}
+      <div class="like tile px-5">
+        <div class="tile__icon">
+          <figure class="avatar"><img src="{{ like.author.photo }}"></figure>
+        </div>
+        <div class="tile__container u-overflow-hidden">
+          <p class="tile__title m-0 u-text-no-wrap">{{ like.author.name }}</p>
+          <span class="tile__subtitle m-0">Liked this post</span>
+          <span class="info">on <a href="{{ like.url }}">{{ like.source }}</a></span>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% for comment in post.comments %}
+      <div class="comment tile px-5">
+        <div class="tile__icon">
+          <figure class="avatar"><img src="{{ comment.author.photo }}"></figure>
+        </div>
+        <div class="tile__container u-overflow-hidden">
+          <p class="tile__title m-0 u-text-no-wrap">{{ comment.author.name }}</p>
+          <span class="tile__subtitle m-0">{{ comment.text }}</span>
+          <span class="info">on <a href="{{ comment.url }}">{{ comment.source }}</a></span>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  {% endif %}
+  
+  {% if post.location %}
+  <div class="card">
+    <div class="card__header">
+      <p class="font-bold px-3">Jonathan's location at time of posting.</p>
+    </div>
+    <div class="content p-3">
+      {{ map.map(post.location['x'], post.location['y'], "", post.location) }}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+
+

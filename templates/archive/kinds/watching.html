@@ -1,0 +1,7 @@
+<div id="watched">
+{% for watch in posts['watching'] %} 
+  <a href="{{ watch.url }}">
+    <div class="photo" style="background-image:url({{watch.watch_of.photo}}); background-size: cover; background-position: 50%;"></div>
+  </a> 
+{% endfor %}
+</div>

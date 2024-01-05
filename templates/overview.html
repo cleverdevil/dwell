@@ -1,0 +1,153 @@
+{% extends "shell.html" %}
+
+{% block title %}Jonathan LaCour - Overview{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/overview.css">
+  <script src="/js/overview.js" language="javascript"></script>
+{% endblock %}
+
+{% block main %}
+
+<div class="row mt-12 px-6 u-center u-flex u-items-flex-start" id="overview">
+
+  <!-- left side -->
+  <div class="col-4 mr-2">
+    
+    <!-- photos -->
+    <div class="frame mb-4" id="photos">
+      <div class="frame__header">
+        <div class="frame__title">
+          <h4><ion-icon name="images"></ion-icon> Photos</h4>
+        </div>
+      </div>
+      <div class="frame__body pb-3 u-center">
+        {% for photo_post in photos %}
+          {% for photo in photo_post.photos %}
+            <a href="{{ photo_post.url }}">
+              <div class="photo" style="background-image:url({{photo}}); background-size: cover; background-position: 50%"></div>
+            </a>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- interactions -->
+    <div class="frame mb-4" id="interactions">
+      <div class="frame__header">
+        <div class="frame__title">
+          <h4><ion-icon name="chatbubbles"></ion-icon> Interactions</h4>
+        </div>
+      </div>
+      <div class="frame__body pb-3">
+        {% for interaction in interactions %}
+          <div>
+          {% if interaction.is_bookmark %}
+            <ion-icon name="bookmark"></ion-icon>
+          {% else %}
+            <ion-icon name="thumbs-up"></ion-icon>
+          {% endif %}
+          <a href="{{ interaction.url }}">{{ interaction.name }}</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- watched -->
+    <div class="frame mb-4" id="watched">
+      <div class="frame__header">
+        <div class="frame__title">
+          <h4><ion-icon name="film-outline"></ion-icon> Watched</h4>
+        </div>
+        <div class="frame__body pb-3 u-center">
+          {% for watch in watches %} 
+            <a href="{{ watch.url }}">
+              <div class="photo" style="background-image:url({{watch.watch_of.photo}}); background-size: cover; background-position: 50%;"></div>
+            </a> 
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- listened -->
+    <div class="frame mb-4" id="listened">
+      <div class="frame__header">
+        <div class="frame__title">
+          <h4><ion-icon name="headset"></ion-icon> Listened</h4>
+        </div>
+        <div class="frame__body pb-3 u-center">
+          {% for listen in listens %} 
+          <a href="{{ listen.url }}">
+            <div class="photo" style="background-image:url({{listen.listen_of.photo}}); background-size: cover; background-position: 50%"></div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- places -->
+    <div class="frame mb-4" id="places">
+      <div class="frame__header">
+        <div class="frame__title">
+          <h4><ion-icon name="location"></ion-icon> Checkins</h4>
+        </div>
+      </div>
+      <div class="frame__body pb-3">
+        {% for checkin in checkins %} 
+          <div><a href="{{ checkin.url }}">{{ checkin.checkin_to.name }}</a></div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- right side -->
+  <div class="col-7 right frame">
+    
+    <div class="frame__header">
+      <div class="tab-container tabs--center tabs-fill tabs--xl">
+        <ul>
+          <li id="microblog-tab" class="selected">
+            <div class="tab-item-content level">
+              <span class="icon level-item"><ion-icon name="chatbox-outline"></ion-icon></span>
+              <span class="level-item">Microblog</span>
+            </div>
+          </li>
+          <li id="blog-tab">
+            <div class="tab-item-content level">
+              <span class="icon level-item"><ion-icon name="document-text-outline"></ion-icon></span>
+              <span class="level-item">Blog</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="frame__body">
+      <div id="microblog" class="animated fadeIn">
+          {% for status in statuses %} 
+            <div class="tile mb-2 my-1">
+              <div class="tile__icon">
+                <figure class="avatar"><img src="https://cleverdevil.io{{ status.author.photo }}"></figure>
+              </div>
+              <div class="tile__container">
+                <p class="tile__title m-0"></p>
+                <p class="tile__subtitle m-0">{{ status.html | safe }}</p>
+                <a class="info" href="{{ status.url }}">{{ status.published.humanize() }}</a>
+              </div>
+            </div>
+          {% endfor %}
+      </div>
+
+      <div class="u-none animated fadeIn" id="blog">
+        {% for blog in blogs %} 
+          <details class="blog accordion">
+            <summary class="accordion__summary">{{ blog.name }}</summary>
+            <div>{{ blog.html | safe }}</div>
+          </details>
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+

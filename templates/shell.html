@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block head %}
+    {% endblock %}
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Leaflet maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script type="text/javascript" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Cirrus CSS Framework -->
+    <link href="https://unpkg.com/cirrus-ui" type="text/css" rel="stylesheet"/>
+    
+    <!-- Google Fonts -->
+    <link href="/fonts/raleway/stylesheet.css" rel="stylesheet">
+    <link href="/fonts/playfair-display/stylesheet.css" rel="stylesheet">
+
+    <!-- Webmention.io -->
+    <link rel="webmention" href="https://webmention.io/cleverdevil.io/webmention" />
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div style="width:100%; height:100%; background-image:url(https://cleverdevil.io/file/ea148c8ee95a255990e82cbf2c46ae3a); background-size:cover; position: fixed; z-index:-1; top: 0;"></div>
+      
+    {% include "header.html" %}
+    <main>
+      {% block main %}
+      {% endblock %}
+    </main>
+    <footer>
+      {% include "footer.html" %}
+    </footer>
+  </body>
+</html>

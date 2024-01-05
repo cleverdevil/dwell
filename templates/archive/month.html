@@ -1,0 +1,56 @@
+{% extends "shell.html" %}
+
+{% block title %}Jonathan LaCour - Summary - {{ month_name }}, {{ year }}{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/monthly.css">
+{% endblock %}
+
+{% block main %}
+<div class="u-center">
+  <div class="frame max-w-md mt-12 p-5 u-text-left">
+    <div class="frame__header">
+      <div class="frame__title u-overflow-hidden">
+        <ion-icon class="mr-1 u-pull-left" style="font-size: 2rem;" name="calendar-outline" style="margin-top: 7px;"></ion-icon>
+        <h3 class="u-pull-left">Summary for {{ month_name }}, {{ year }}</h3>
+        <a class="u-pull-right" style="font-size: 2rem;" href="/archive/{{ year if month < 12 else year + 1}}/{{ month + 1 if month < 12 else 1 }}">
+          <ion-icon name="arrow-forward-circle"></ion-icon>
+        </a>
+        <a class="u-pull-right" style="font-size: 2rem;" href="/archive/{{ year if month > 1 else year - 1}}/{{ month - 1 if month > 1 else 12 }}">
+          <ion-icon name="arrow-back-circle"></ion-icon>
+        </a>
+      </h3>
+    </div>
+    <div class="divider m-0"></div>
+    <div class="frame__body u-text-left">
+       
+      <div class="row">
+        <p class="w-100p">In {{month_name}}, {{year}}, Jonathan posted {{ post_count }} times.</p>
+        <div class="post-kinds mb-2">
+          {% for kind in posts.keys() %}
+            <a class="u-pull-left mr-1 tag-container group-tags group-tags--rounded" href="#{{kind}}">
+              <div class="tag tag--dark">{{ g.len(posts[kind]) }}</div>
+              <div class="tag tag--info">
+                <ion-icon class="mr-1" name="{{ posts[kind][0].kind_icon }}"></ion-icon>
+                {{ posts[kind][0].kind_name }}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+        
+      {% for kind in posts.keys() %}
+        <div class="row mb-2" id="{{ kind }}">
+          <div class="level w-100p">
+            <h3 class="level-item">
+              <ion-icon class="level-item mr-1" name="{{ posts[kind][0].kind_icon }}"></ion-icon> 
+              {{ posts[kind][0].kind_name }}
+            </h3>
+          </div>
+          {% include 'archive/kinds/' + kind + ".html" %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

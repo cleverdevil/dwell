@@ -1,0 +1,7 @@
+<div id="listened">
+{% for listen in posts['listen'] %} 
+  <a href="{{ listen.url }}">
+    <div class="photo" style="background-image:url({{listen.listen_of.photo}}); background-size: cover; background-position: 50%"></div>
+  </a>
+{% endfor %}
+</div>

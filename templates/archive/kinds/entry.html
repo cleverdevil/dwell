@@ -1,0 +1,7 @@
+<details class="accordion w-100p">
+{% for blog in posts[kind] %}
+  <summary class="accordion__summary">{{ blog.name }}</summary>
+  <div>{{ blog.html | safe }}</div>
+{% endfor %}
+</details>
+

@@ -1,0 +1,28 @@
+<div id="map" style="width: 100%; height: 400px;"></div>
+  <script type="text/javascript">
+      var map = L.map('map').setView([0, 0], 12);
+      map.setMaxZoom(15);
+      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg', {
+          maxZoom: 20,
+          attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      var group = new L.featureGroup();
+      
+      {% for post in posts['checkin'] %}
+        var marker{{ post.uuid }} = L.marker([{{ post.checkin_to.latitude }}, {{ post.checkin_to.longitude }}], {
+          title: "{{ post.checkin_to.name }}"
+        });
+        marker{{ post.uuid }}.addTo(map);
+        group.addLayer(marker{{ post.uuid }});
+        marker{{ post.uuid }}.bindPopup(
+          "<b style=\"font-size: 14px\">{{ post.checkin_to.name }}</b>"
+        );
+      {% endfor %}
+      
+      map.fitBounds(group.getBounds());
+      map.scrollWheelZoom.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable()
+    </script>
+  </div>

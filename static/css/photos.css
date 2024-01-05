@@ -1,0 +1,21 @@
+#photos {
+  overflow: hidden;
+}
+#photos a {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  margin: 10px 10px 10px 0;
+}
+#photos .photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  transition: all 200ms ease-in-out;
+}
+#photos .photo:hover {
+  cursor: pointer;
+  opacity: 0.75;
+}

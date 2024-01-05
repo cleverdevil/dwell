@@ -1,0 +1,28 @@
+{% extends "shell.html" %}
+
+{% block title %}Jonathan LaCour - Now{% endblock %}
+
+{% import "partials/map.html" as map %}
+
+{% block main %}
+<div class="frame max-w-md u-center mt-12 p-5 ">
+  <div class="frame__header u-text-center">
+    <div>
+      <figure class="avatar avatar--xl">
+        <img src="/me.jpg" />
+      </figure>
+    </div>
+    <div>
+      <h6 class="frame__title">Jonathan LaCour  </h6>
+      <div class="frame__subtitle">Where am I now?</div>
+    </div>
+  </div>
+  <div class="divider m-0"></div>
+  <div class="frame__body">
+    <div class="content u-text-center">
+      {{ map.map(current['x'], current['y'], "", current) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,98 @@
+{%- macro navitem(name, target) %}
+<div class="nav-item text-center {{'active' if g.path == target else ''}}"><a href="{{target}}">{{name}}</a></div>
+{% endmacro -%}
+
+{%- macro menuitem(name, target) %}
+<li role="menu-item"><a href="{{target}}">{{name}}</a></li>
+{% endmacro -%}
+
+{%- macro relme(name, target, icon) %}
+<div class="tag">
+  <a class="" href="{{target}}" rel="me">
+    <span class="icon"><ion-icon name="{{icon}}"></ion-icon></span>
+    <span>{{name}}</span> 
+  </a>
+</div>
+{% endmacro -%}
+
+<div class="header header-fixed unselectable header-animated header-dark">
+  <div class="header-brand">
+    <div class="nav-item no-hover">
+      <a href="/"><h6 class="title">cleverdevil</h6></a>
+    </div>
+    <div class="nav-item nav-btn" id="header-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="header-nav" id="header-menu">
+    <div class="nav-left">
+      {{ navitem('Home', '/') }}
+      {{ navitem('About', '/about') }}
+      {{ navitem('Photos', '/photos') }}
+            
+      <div class="nav-item has-sub toggle-hover" id="dropdown">
+        <a class="nav-dropdown-link">Views</a>
+        <ul class="dropdown-menu dropdown-animated" role="menu">
+          {{ menuitem('Overview', '/overview') }}
+          {{ menuitem('On This Day', '/on-this-day') }}
+          {{ menuitem('Now', '/now') }}
+          {{ menuitem('Health', '/health') }}
+          {{ menuitem('Archive', '/archive') }}
+       </ul>
+      </div>
+      
+      {% if g.show_filters %}
+      <div class="nav-item has-sub toggle-hover" id="dropdown-filter">
+        <a class="nav-dropdown-link">Filters</a>
+        <ul class="dropdown-menu dropdown-animated" role="menu">
+          {% for kind_key, kind_name in g.model.Post.all_kinds.items() %}
+            <li role="menu-item"><a href="/content/{{ kind_key }}">{{ kind_name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="nav-right">
+    </div>
+  </div>
+</div>
+
+{% if g.path == '/' %}
+<div class="profile frame max-w-sm u-center mt-12 p-5 ">
+  <div class="frame__header u-text-center">
+    <div>
+      <figure class="avatar avatar--xl">
+        <img src="https://cleverdevil.io/file/e37c3982acf4f0a8421d085b9971cd71/thumb.jpg" />
+      </figure>
+    </div>
+    <div>
+      <h6 class="frame__title">Jonathan LaCour</h6>
+      <div class="frame__subtitle">one clever devil</div>
+    </div>
+    <div class="row">
+      <div class="tag-container u-center">
+        {{ relme('Mastodon', 'https://cleverdevil.club/@jonathan', 'logo-mastodon') }}
+        {{ relme('Bluesky', 'https://bsky.app/profile/cleverdevil.io', 'partly-sunny-outline') }}
+        {{ relme('GitHub', 'https://github.com/cleverdevil', 'logo-github') }}
+        {{ relme('LinkedIn', 'https://www.linkedin.com/in/cleverdevil', 'logo-linkedin') }}
+        {{ relme('Micro.blog', 'https://micro.blog/cleverdevil', 'logo-rss') }}
+        {{ relme('Trakt', 'https://trakt.tv/users/cleverdevil', 'tv-outline') }}
+        {{ relme('CashApp', 'https://cash.me/$cleverdevil', 'cash-outline') }}
+      </div>
+    </div>
+  </div>
+  <div class="divider m-0"></div>
+  <div class="frame__body">
+    <div class="content u-text-center">
+      <h5>Hello, there.</h5>
+      <p class="u-text-left">
+        Nice to meet you. This is my personal website. You know, those things that people used to have?
+        Well, they're back. <a href="/about">Learn a bit more about me</a> or just browse.
+      </p>
+    </div>
+  </div>
+</div>
+{% endif %}

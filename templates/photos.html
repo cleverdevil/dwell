@@ -1,0 +1,34 @@
+{% extends "shell.html" %}
+{% import "partials/paginate.html" as paginate %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/photos.css">
+{% endblock %}
+
+{% block title %}Photos{% endblock %}
+
+{% block main %}
+<div class="frame" style="background: white; margin: 6rem 6rem 2rem 6rem; padding: 2rem;">
+  <div class="frame__body">
+    <div class="content u-text-center">
+      <div id="photos" class="section-item">
+        {% for photo_post in photos %}
+          {% for photo in photo_post.photos %}
+            <a href="{{ photo_post.url }}">
+              <div class="photo" style="background-image:url({{photo}}); background-size: cover; background-position: 50%"></div>
+            </a>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="divider m-0"></div>
+  <div class="frame__footer">
+    <div class="frame__subtitle u-text-center">
+    </div>
+  </div>
+</div>
+
+{{ paginate.paginate(limit, offset, count) }}
+
+{% endblock %}

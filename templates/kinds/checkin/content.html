@@ -1,0 +1,4 @@
+{% import "partials/map.html" as map %}
+
+{{ post.html | safe }}
+{{ map.map(post.checkin_to.longitude, post.checkin_to.latitude) }}

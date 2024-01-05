@@ -1,0 +1,143 @@
+/* typography */
+p, li, body {
+    font-family: 'Raleway', sans-serif !important;
+    font-weight: 400;
+    line-height: 1.75em !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif !important;
+}
+h1 { font-size: 3.0em !important; }
+h2 { font-size: 2.5em !important; }
+h3, h4, h5, h6 { font-size: 2.0em !important; }
+p { font-size: 1.0em !important; }
+
+.card__header a {
+  color: black;
+}
+
+.card__header a {
+  font-weight: 600;
+}
+
+.content a {
+  color: #4c93cb !important;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #4c93cb !important;
+}
+
+body {
+  background: #ccc;
+}
+
+.frame, .card {
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+.header {
+  background: rgba(0, 0, 0, 0.85) !important;
+  z-index: 100000;
+}
+.leaflet-container {
+  z-index: 50;
+}
+.header, .header > *, .header a h6 {
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 200;
+}
+
+main .feed {
+  margin-top: 4rem;
+}
+
+main article {
+  clear: both;
+  overflow: hidden;
+}
+
+main article .photo-gallery {
+  overflow: hidden;
+  padding-bottom: 1rem;
+}
+
+main article .photo-gallery .photo-view {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+main article .photo-gallery .photo-view img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  transition: all 200ms ease-in-out;
+  border-radius: 5px;
+}
+
+main article .photo-container .photo-view {
+  max-width: 100%;
+  margin: 0 1rem -3rem 0; 
+}
+
+main article .photo-container a:hover {
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.post-details {
+  clear: both;
+  overflow: hidden;
+}
+
+.comment, .like {
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+}
+
+.comment-author {
+  display: inline-block;
+  width: 50px;
+  float: left;
+  margin-right: 1rem;
+}
+
+.comment .comment-author img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  filter: drop-shadow(#eee 0 0 2px);
+}
+
+.comment-content {
+  float: left;
+  max-width: 90%;
+  margin-top: -0.9rem;
+}
+
+#on-this-day-select {
+  display: block;
+}
+
+#on-this-day-select #month {
+  width: 200px;
+  margin-right: 1rem;
+}
+
+#on-this-day-select #day {
+  width: 100px;
+  margin-right: 1rem;
+}
+
+.kind-checkin .content {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0 !important;
+  margin-bottom: 2rem;
+}
+
+#month-summary {
+  text-align: left !important;
+}

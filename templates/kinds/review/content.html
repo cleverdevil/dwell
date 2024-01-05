@@ -1,0 +1,23 @@
+<div class="rating u-center text-xl">
+  {% for i in range(post.rating) %}
+  <span class="u-pull-left">
+    <ion-icon name="star"></ion-icon>
+  </span>
+  {% endfor %}
+  {% for i in range(5 - post.rating) %}
+  <span class="u-pull-left">
+    <ion-icon name="star-outline"></ion-icon>
+  </span>
+  {% endfor %}
+</div>
+
+<a href="{{ post.review_of.url }}">
+  <figure class="fig u-center">
+    <img src="{{ post.review_of.photo }}" class="u-block" />
+    <figcaption class="fig-caption u-text-center w-100p">
+      {{ post.review_of.name }} 
+    </figcaption>
+  </figure>
+</a>
+
+<div>{{ post.html | safe }}</div>

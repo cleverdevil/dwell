@@ -1,0 +1,65 @@
+.frame__title {
+  text-align: left !important;
+}
+
+div.year {
+  clear: both;
+}
+
+ul.month {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+ul.month li {
+  margin: 0 1px 1px 0;
+  padding: 0;
+  text-align: center;
+  width: 80px;
+}
+
+ul.month li > a {
+  color: #333;
+}
+
+ul.month li.month-name {
+  background: #333;
+}
+
+ul.month li.month-name > a {
+  color: #ccc;
+}
+
+li.archive-day.day-1  { background: #c0c0c0; }
+li.archive-day.day-2  { background: #c2c2c2; }
+li.archive-day.day-3  { background: #c4c4c4; }
+li.archive-day.day-4  { background: #c6c6c6; }
+li.archive-day.day-5  { background: #c8c8c8; }
+li.archive-day.day-6  { background: #cacaca; }
+li.archive-day.day-7  { background: #cccccc; }
+li.archive-day.day-8  { background: #cecece; }
+li.archive-day.day-9  { background: #d0d0d0; }
+li.archive-day.day-10 { background: #d2d2d2; }
+li.archive-day.day-11 { background: #d4d4d4; }
+li.archive-day.day-12 { background: #d6d6d6; }
+li.archive-day.day-13 { background: #d8d8d8; }
+li.archive-day.day-14 { background: #dadada; }
+li.archive-day.day-15 { background: #dcdcdc; }
+li.archive-day.day-16 { background: #dedede; }
+li.archive-day.day-17 { background: #e0e0e0; }
+li.archive-day.day-18 { background: #e2e2e2; }
+li.archive-day.day-19 { background: #e4e4e4; }
+li.archive-day.day-20 { background: #e6e6e6; }
+li.archive-day.day-21 { background: #e8e8e8; }
+li.archive-day.day-22 { background: #eaeaea; }
+li.archive-day.day-23 { background: #ececec; }
+li.archive-day.day-24 { background: #eeeeee; }
+li.archive-day.day-25 { background: #f0f0f0; }
+li.archive-day.day-26 { background: #f2f2f2; }
+li.archive-day.day-27 { background: #f4f4f4; }
+li.archive-day.day-28 { background: #f6f6f6; }
+li.archive-day.day-29 { background: #f8f8f8; }
+li.archive-day.day-30 { background: #fafafa; }
+li.archive-day.day-31 { background: #fcfcfc; }

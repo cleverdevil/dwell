@@ -1,0 +1,25 @@
+{% extends "shell.html" %}
+
+{% block head %}
+  <script src="/js/on-this-day.js" language="javascript"></script>
+  <link rel="stylesheet" href="/css/on-this-day.css">
+{% endblock %}
+
+{% block title %}Jonathan LaCour - On This Day{% endblock %}
+
+{% block main %}
+<div class="bg-white u-bg-opacity-80 mt-12 pt-2 u-center w-50p-lg w-100p-md min-w-xs">
+  <h1>{{date}} over the years...</h1>
+  <input type="hidden" id="current-month" value="{{ month }}">
+  <input type="hidden" id="current-day" value="{{ day }}">
+
+<div id="on-this-day-select" class="u-center u-text-center"></div>
+
+</div>
+
+<div class="feed on-this-day u-center w-70p-lg w-100p-md min-w-xs">
+{% for post in posts %}
+  {% include "kinds/post.html" %}
+{% endfor %}
+</div>
+{% endblock %}

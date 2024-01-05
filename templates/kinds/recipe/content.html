@@ -1,0 +1,20 @@
+{% if post.photo %}
+  <div class="row u-center">
+    <img class="img-stretch" src="{{ post.photo }}">
+  </div>
+{% endif %}
+
+<div class="row">
+  <h3 class="w-100p">Ingredients</h3>
+  <ul class="recipe-ingredients">
+    {% for ingredient in post.ingredients %}
+      <li>{{ ingredient }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="row">
+  Takes {{ post.duration }} minutes. Servings: {{ post.yields.lower() }}.
+</div>
+
+<div>{{ post.html | safe }}</div>

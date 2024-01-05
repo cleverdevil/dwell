@@ -1,0 +1,28 @@
+<h1>Authorization Request: </h1>
+
+<div id="content">
+  The app <pre>{{client_id}}</pre> is requesting the following scopes:
+
+  <ul class="scopes">
+    {% for scope_name in scope.split(): %}
+    <li>{{scope_name}}</li>
+    {% endfor %}
+  </ul>
+
+  <form method="POST" action="/indieauth/auth">
+    <input type="hidden" name="me" value="{{me}}">
+    <input type="hidden" name="client_id" value="{{client_id}}">
+    <input type="hidden" name="redirect_uri" value="{{redirect_uri}}">
+    <input type="hidden" name="response_type" value="{{response_type}}">
+    <input type="hidden" name="scope" value="{{scope}}">
+    
+    {% if state %}
+      <input type="hidden" name="state" value="{{state}}">
+    {% endif %}
+    
+    <label for="password">Password for <code>{{me}}:</code></label>
+    <input type="password" name="password">
+
+    <input type="submit" name="approve" value="Approve"> 
+  </form>
+</div>

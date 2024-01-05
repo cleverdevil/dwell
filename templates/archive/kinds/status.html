@@ -1,0 +1,13 @@
+{% for status in posts['status'] %} 
+  <div class="tile mb-2 my-1 w-100p">
+    <div class="tile__icon">
+      <figure class="avatar"><img src="https://cleverdevil.io{{ status.author.photo }}"></figure>
+    </div>
+    <div class="tile__container">
+      <p class="tile__title m-0"></p>
+      <p class="tile__subtitle m-0">{{ status.html | safe }}</p>
+      <a class="info" href="{{ status.url }}">{{ status.published.humanize() }}</a>
+    </div>
+  </div>
+{% endfor %}
+
