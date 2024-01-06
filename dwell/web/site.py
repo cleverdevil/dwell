@@ -36,6 +36,9 @@ def view(year, slug, content_type):
     if not post:
         flask.abort(404)
 
+    if content_type == "json":
+        return post.json
+
     return flask.render_template("post.html", post=post, detail=True)
 
 
@@ -51,6 +54,10 @@ def view_by_id(uuid, content_type):
     """
 
     post = model.Post.get(uuid=uuid)
+
+    if content_type == "json":
+        return post.json
+
     return flask.render_template("post.html", post=post, detail=True)
 
 
