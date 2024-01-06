@@ -47,7 +47,7 @@
       <div class="nav-item has-sub toggle-hover" id="dropdown-filter">
         <a class="nav-dropdown-link">Filters</a>
         <ul class="dropdown-menu dropdown-animated" role="menu">
-          {% for kind_key, kind_name in g.model.Post.all_kinds.items() %}
+          {% for kind_key, kind_name in g.model.Post.all_kinds().items() %}
             <li role="menu-item"><a href="/content/{{ kind_key }}">{{ kind_name }}</a></li>
           {% endfor %}
         </ul>
