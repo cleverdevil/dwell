@@ -19,7 +19,6 @@ import uuid
 import arrow
 import flask
 
-from .. import conf
 from . import model
 from .web import indieauth, micropub, site
 
@@ -30,6 +29,9 @@ app = flask.Flask(
     static_folder=pathlib.Path("static").absolute(),
     template_folder=pathlib.Path("templates").absolute(),
 )
+
+app.config.from_object("conf")
+
 app.register_blueprint(site.blueprint)
 app.register_blueprint(indieauth.blueprint)
 app.register_blueprint(micropub.blueprint)
@@ -43,7 +45,6 @@ def set_shared_context():
     easier to deal with.
     """
 
-    flask.g.dwell_conf = conf
     flask.g.model = model
     flask.g.arrow = arrow
     flask.g.uuid = uuid

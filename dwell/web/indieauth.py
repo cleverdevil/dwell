@@ -14,8 +14,7 @@ import arrow
 import duckdb
 import flask
 import jwt
-
-from ... import conf
+from flask.app import current_app as app
 
 blueprint = flask.Blueprint(
     "indieauth", __name__, template_folder=pathlib.Path("templates").absolute()
@@ -76,11 +75,9 @@ def verify_password(me, password):
 
     me = normalize_me(me)
     pass_hash = hashlib.sha256(
-        (password + conf.passwords["salt"]).encode("utf-8")
+        (password + app.config["PASSWORDS"]["salt"]).encode("utf-8")
     ).hexdigest()
-    print(pass_hash)
-    found_pass = conf.passwords["passwords"].get(me)
-    print(found_pass)
+    found_pass = app.config["PASSWORDS"]["passwords"].get(me)
     return pass_hash == found_pass
 
 
@@ -290,7 +287,9 @@ def token_get():
     # validate token
     try:
         payload = jwt.decode(
-            token, conf.token["secret"], algorithms=[conf.token["algorithm"]]
+            token,
+            app.config["TOKEN"]["secret"],
+            algorithms=[app.config["TOKEN"]["algorithm"]],
         )
         if payload.get("response_type") == "id":
             response.status = 400
@@ -337,8 +336,8 @@ def token_post():
                 "date_issued": str(datetime.utcnow()),
                 "nonce": str(uuid.uuid4()),
             },
-            conf.token["secret"],
-            conf.token["algorithm"],
+            app.config["TOKEN"]["secret"],
+            app.config["TOKEN"]["algorithm"],
         ).decode("utf-8")
 
         # construct the return payload

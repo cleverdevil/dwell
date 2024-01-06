@@ -15,8 +15,8 @@ import arrow
 import flask
 import hashfs
 import slugify
+from flask.app import current_app as app
 
-from ... import conf
 from .. import model
 from . import indieauth
 
@@ -140,9 +140,9 @@ def micropub_post():
             {
                 "type": ["h-card"],
                 "properties": {
-                    "name": [conf.author.name],
-                    "url": [conf.author.url],
-                    "photo": [conf.author.photo],
+                    "name": [app.config["AUTHOR"].name],
+                    "url": [app.config["AUTHOR"].url],
+                    "photo": [app.config["AUTHOR"].photo],
                 },
             }
         ]

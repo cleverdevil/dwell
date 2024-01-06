@@ -6,24 +6,24 @@ model.add_alias('default', model.Photo)
 model.add_alias('default', model.Recipe)
 model.add_alias('default', model.Review)
 
-author = model.Author(
+AUTHOR = model.Author(
     name='Jonathan LaCour',
     url='https://cleverdevil.io',
     photo='https://cleverdevil.io/profile/photo'
 )
 
-passwords = {
+PASSWORDS = {
     'salt': 'ASDF123',
     'passwords': {
         'https://cleverdevil.io/': 'asdf-asdf-asdf-asdf-asdf'
     }
 }
 
-token = {
+TOKEN = {
     'algorithm': 'HS256',
     'secret': 'asdf-asdf-asdf-asdf-asdf-asdf'
 }
 
-webmentions = {
+WEBMENTIONS = {
     'feed': 'https://webmention.io/api/mentions.html?token=asdfasdfasdfasdfasdf'
 }
