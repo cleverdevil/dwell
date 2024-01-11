@@ -1,0 +1,64 @@
+<div class="min-w-100p">
+  <div class="form-group min-w-100p">
+    <label class="form-group-label text-l">Target</label>
+    <input type="text" id="review-target" class="form-group-input" placeholder="https://"/>
+  </div>
+
+  <div class="form-group min-w-100p">
+    <label class="form-group-label text-l">Name</label>
+    <input type="text" id="review-target-name" class="form-group-input" placeholder="What are you reviewing?" />
+  </div>
+
+  <input type="file"/>
+    
+  <div class="rating btn-group mt-1">
+    <button id="rating-1" class="rating-choice" onclick="dwell.admin.kinds.review.setStarRating(1)">
+      <ion-icon class="rating-star-off" name="star-outline"></ion-icon>
+      <ion-icon class="rating-star-on u-none" name="star"></ion-icon>
+    </button>
+    <button id="rating-2" class="rating-choice" onclick="dwell.admin.kinds.review.setStarRating(2)">
+      <ion-icon class="rating-star-off" name="star-outline"></ion-icon>
+      <ion-icon class="rating-star-on u-none" name="star"></ion-icon>
+    </button>
+    <button id="rating-3" class="rating-choice" onclick="dwell.admin.kinds.review.setStarRating(3)">
+      <ion-icon class="rating-star-off" name="star-outline"></ion-icon>
+      <ion-icon class="rating-star-on u-none" name="star"></ion-icon>
+    </button>
+    <button id="rating-4" class="rating-choice" onclick="dwell.admin.kinds.review.setStarRating(4)">
+      <ion-icon class="rating-star-off" name="star-outline"></ion-icon>
+      <ion-icon class="rating-star-on u-none" name="star"></ion-icon>
+    </button>
+    <button id="rating-5" class="rating-choice" onclick="dwell.admin.kinds.review.setStarRating(5)">
+      <ion-icon class="rating-star-off" name="star-outline"></ion-icon>
+      <ion-icon class="rating-star-on u-none" name="star"></ion-icon>
+    </button>
+    <input type="hidden" id="review-rating" />
+  </div>
+
+  <div class="form-group min-w-100p">
+    <label class="form-group-label">Title</label>
+    <input type="text" id="review-name" class="form-group-input" placeholder="What is the title of your review post?"/>
+  </div>
+  <div class="min-w-100p">
+    <div id="review-content" class="min-w-100p"></div>
+  </div>
+  <script>
+    var quill = new Quill('#review-content', {
+      theme: 'snow'
+    });
+  </script>
+</div>
+
+<style type="text/css">
+  .ql-toolbar.ql-snow {
+    padding: 8px 8px 0 8px !important;
+    height: 2.75rem !important;
+    background: #F8F9FA !important;
+  }
+  .ql-snow .ql-formats {
+    vertical-align: top !important;
+  }
+  .ql-editor {
+    background: white !important;
+  }
+</style>

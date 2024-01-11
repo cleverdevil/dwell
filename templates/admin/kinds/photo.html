@@ -1,0 +1,30 @@
+<div class="min-w-100p">
+  <input type="file"/>
+    
+  <div class="form-group min-w-100p">
+    <label class="form-group-label">Title</label>
+    <input type="text" class="form-group-input" placeholder="What is the title of your post?"/>
+  </div>
+  <div class="min-w-100p">
+    <div id="{{ kind_name}}-content-editor" class="min-w-100p"></div>
+  </div>
+  <script>
+    var quill = new Quill('#{{ kind_name}}-content-editor', {
+      theme: 'snow'
+    });
+  </script>
+</div>
+
+<style type="text/css">
+  .ql-toolbar.ql-snow {
+    padding: 8px 8px 0 8px !important;
+    height: 2.75rem !important;
+    background: #F8F9FA !important;
+  }
+  .ql-snow .ql-formats {
+    vertical-align: top !important;
+  }
+  .ql-editor {
+    background: white !important;
+  }
+</style>

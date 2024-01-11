@@ -42,13 +42,13 @@ document.addEventListener("DOMContentLoaded", function(){
         daySelect.value = dayNum || 1;
     }
 
-    monthSelect.addEventListener("change", (event) => {
+    monthSelect.addEventListener("change", (_) => {
         updateDaySelector(monthSelect.value);
     });
     
     var button = document.createElement('button');
     button.innerText = 'Go';
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', (_) => {
         document.location.href = '/on-this-day/' + monthSelect.value + '/' + daySelect.value;
     });
 

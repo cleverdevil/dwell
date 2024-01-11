@@ -1,0 +1,27 @@
+<div class="min-w-100p">
+  <div class="min-w-100p">
+    <div class="form-group min-w-100p">
+      <label class="form-group-label">Title</label>
+      <input id="entry-name" type="text" class="form-group-input" placeholder="What is the title of your post?"/>
+    </div>
+    <div class="min-w-100p">
+      <div id="entry-content" class="min-w-100p"></div>
+    </div>
+    <script>
+      var quill = new Quill('#entry-content', {
+        theme: 'snow'
+      });
+    </script>
+  </div>
+</div>
+
+<style type="text/css">
+  .ql-toolbar {
+    padding: 8px 8px 0 8px !important;
+    height: 2.75rem !important;
+    background: #F8F9FA !important;
+  }
+  .ql-snow .ql-formats {
+    vertical-align: top !important;
+  }
+</style>

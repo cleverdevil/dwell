@@ -1,0 +1,58 @@
+<div class="min-w-100p">
+  <input type="file"/>
+    
+  <div class="form-group min-w-100p">
+    <label class="form-group-label">Title</label>
+    <input type="text" id="recipe-name" class="form-group-input" placeholder="Vegan Beef Stew" />
+  </div>
+  
+  <div class="form-group min-w-100p">
+    <label class="form-group-label">Servings</label>
+    <input type="text" id="recipe-yield" class="form-group-input mr-1" placeholder="10" />
+    <label class="form-group-label">Duration</label>
+    <input type="text" id="recipe-duration" class="form-group-input" placeholder="90 minutes" />
+  </div>
+ 
+  <div class="min-w-100p">
+    <label class="font-bold">Ingredients</label>
+    <div id="ingredients"></div>
+    <div class="form-group min-w-100p">
+      <input id="ingredient-qty" type="text" class="form-group-input w-20p" placeholder="One Cup" />
+      <input id="ingredient-name" type="text" class="form-group-input" placeholder="Whole milk" />
+      <button class="form-group-btn btn-primary level-item" onclick="dwell.admin.kinds.recipe.addIngredient()">
+        <ion-icon name="add-circle" class="mt-1 text-xl"></ion-icon>
+      </button>
+
+      <div id="ingredient-warning" class="toast toast--danger animated bounceIn" style="display: none; position: fixed; top: 50%; left: 40%; width: 20%; z-index: 1000000;">
+        <p>Quantity and name are required</p>
+      </div>
+
+    </div>
+  </div>
+
+  
+  <div class="min-w-100p mt-1">
+    <label class="font-bold">Instructions</label>
+    <div id="recipe-instructions" class="min-w-100p"></div>
+  </div>
+
+  <script>
+    var quill = new Quill('#recipe-instructions', {
+      theme: 'snow'
+    });
+  </script>
+</div>
+
+<style type="text/css">
+  .ql-toolbar.ql-snow {
+    padding: 8px 8px 0 8px !important;
+    height: 2.75rem !important;
+    background: #F8F9FA !important;
+  }
+  .ql-snow .ql-formats {
+    vertical-align: top !important;
+  }
+  .ql-editor {
+    background: white !important;
+  }
+</style>

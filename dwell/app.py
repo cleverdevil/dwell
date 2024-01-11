@@ -20,7 +20,7 @@ import arrow
 import flask
 
 from . import model
-from .web import indieauth, micropub, site
+from .web import admin, indieauth, micropub, site
 
 app = flask.Flask(
     __name__,
@@ -35,6 +35,7 @@ app.config.from_object("conf")
 app.register_blueprint(site.blueprint)
 app.register_blueprint(indieauth.blueprint)
 app.register_blueprint(micropub.blueprint)
+app.register_blueprint(admin.blueprint)
 
 
 @app.before_request

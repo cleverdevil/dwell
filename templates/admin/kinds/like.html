@@ -1,0 +1,48 @@
+<div class="min-w-100p">
+  <div class="min-w-100p">
+    <div class="form-group min-w-100p">
+      <div class="btn-group level">
+        <button id="like-btn-like" class="btn-primary u-text-left level-item" onclick="dwell.admin.kinds.like.setInteractionType('like')">
+          <ion-icon class="u-text-left text-xl p-1" name="thumbs-up-outline"></ion-icon>
+        </button>
+        <button id="like-btn-repost" class="u-text-left level-item" onclick="dwell.admin.kinds.like.setInteractionType('repost')">
+          <ion-icon class="u-text-left text-xl p-1" name="repeat-sharp"></ion-icon>
+        </button>
+        <button id="like-btn-bookmark" class="u-text-left level-item" onclick="dwell.admin.kinds.like.setInteractionType('bookmark')">
+          <ion-icon class="u-text-left text-xl p-1" name="bookmark-outline"></ion-icon>
+        </button>
+      </div>
+      <input type="hidden" id="like-interaction" value="like" />
+      <input type="text" id="like-target" class="form-group-input" placeholder="https://"/>
+      <label class="form-group-label text-l">Target</label>
+    </div>
+    <div class="form-group min-w-100p">
+      <label class="form-group-label">Title</label>
+      <input type="text" id="like-name" class="form-group-input" placeholder="What is the title of your post?"/>
+    </div>
+  </div>
+
+  <div class="min-w-100p bg-white">
+    <div id="like-content" class="min-w-100p "></div>
+  </div>
+  
+  <script>
+    var quill = new Quill('#like-content', {
+      theme: 'snow'
+    });
+  </script>
+</div>
+
+<style type="text/css">
+  .ql-toolbar.ql-snow {
+    padding: 8px 8px 0 8px !important;
+    height: 2.75rem !important;
+    background: #F8F9FA !important;
+  }
+  .ql-snow .ql-formats {
+    vertical-align: top !important;
+  }
+  .ql-editor {
+    background: white !important;
+  }
+</style>

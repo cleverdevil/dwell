@@ -1,0 +1,51 @@
+{% extends "shell.html" %}
+
+{% block title %}Dwell - Site Administration{% endblock %}
+
+{% block head %}
+  <script src="/js/admin.js" language="javascript"></script>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+{% endblock %}
+
+{% block main %}
+<div class="u-center">
+  <div class="frame mt-12 w-70p-lg w-100p-md min-w-xs">
+    <div class="frame__header px-4">
+      <div class="frame__title level">
+        <h3 class="level-item"><ion-icon class="level-item mr-1" name="cog-outline"></ion-icon> Site Administration</h3>
+      </div>
+    </div>
+    <div class="frame__body px-4 pb-4">
+
+      <div>
+        <div class="post-kinds mb-2">
+          {% for kind_name, kind in model.kind_map.items() %}
+          <div class="u-pull-left mr-1">
+            <button id="kind-{{ kind_name }}" class="kind-select u-text-left level" onclick="dwell.admin.openPublishForm('{{ kind_name }}')">
+              <ion-icon class="pad-right text-xl level-item" name="{{ kind.kind_icon }}"></ion-icon>
+              <span class="text-l level-item">{{ kind_name.capitalize() }}</span>
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% for kind_name, kind in model.kind_map.items() %}
+      <div class="kind-form min-w-100p animated fadeIn u-none u-clear-both" id="{{ kind_name }}">
+        <div class="divider u-clear-both"></div>
+        <div class="u-flex u-flex-column min-w-100p">
+          {% include 'admin/kinds/'+kind_name+'.html' %}
+          
+          <div class="min-w-100p mt-1">
+            <button onclick="dwell.admin.closePublishForm('{{ kind_name }}')">Cancel</button>
+            <button onclick="dwell.admin.publish('{{ kind_name }}')" class="btn-primary">Publish</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
