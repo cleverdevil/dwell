@@ -2,6 +2,7 @@ dwell = {};
 dwell.admin = {};
 dwell.admin.kinds = {};
 
+/* utility functions */
 dwell.admin.openPublishForm = function(kind_id) {
   let btns = Array.from(document.getElementsByClassName('kind-select'));
   let frms = Array.from(document.getElementsByClassName('kind-form'));
@@ -34,7 +35,14 @@ dwell.admin.closePublishForm = function(kind_id) {
   frm.classList.toggle('u-none');
 };
 
+dwell.admin.publish = function(kind) {
+  let payload = dwell.admin.kinds[kind].payload(); 
+  alert(JSON.stringify(payload));
+};
+
+/* Kind: Review */
 dwell.admin.kinds.review = {};
+
 dwell.admin.kinds.review.setStarRating = function(rating) {
   document.getElementById('review-rating').value = rating;
 
@@ -62,6 +70,7 @@ dwell.admin.kinds.review.setStarRating = function(rating) {
     }
   })
 };
+
 dwell.admin.kinds.review.payload = function() {
   let payload = {
     type: ['h-entry'],
@@ -90,7 +99,9 @@ dwell.admin.kinds.review.payload = function() {
   return payload;
 };
 
+/* Kind: Recipe */
 dwell.admin.kinds.recipe = {};
+
 dwell.admin.kinds.recipe.addIngredient = function() {
   let parent = document.getElementById('ingredients');
   let qty = document.getElementById('ingredient-qty');
@@ -162,8 +173,9 @@ dwell.admin.kinds.recipe.payload = function() {
   return payload;
 };
 
-
+/* Kind: Entry */
 dwell.admin.kinds.entry = {};
+
 dwell.admin.kinds.entry.payload = function() {
   return {
     type: ['h-entry'],
@@ -179,8 +191,9 @@ dwell.admin.kinds.entry.payload = function() {
   }
 };
 
-
+/* Kind: Like */
 dwell.admin.kinds.like = {};
+
 dwell.admin.kinds.like.setInteractionType = function(interaction) {
   document.getElementById('like-interaction').value = interaction;
   document.getElementById('like-btn-like').classList.remove('btn-primary');
@@ -211,7 +224,9 @@ dwell.admin.kinds.like.payload = function() {
   return payload;
 };
 
+/* Kind: Status */
 dwell.admin.kinds.status = {};
+
 dwell.admin.kinds.status.payload = function() {
   return {
     type: ['h-entry'],
@@ -227,7 +242,9 @@ dwell.admin.kinds.status.payload = function() {
   }
 };
 
+/* Kind: Reply */
 dwell.admin.kinds.reply = {};
+
 dwell.admin.kinds.reply.payload = function() {
   return {
     type: ['h-entry'],
@@ -246,7 +263,9 @@ dwell.admin.kinds.reply.payload = function() {
   };
 };
 
+/* Kind: Listen */
 dwell.admin.kinds.listen = {};
+
 dwell.admin.kinds.listen.payload = function() {
   return {
     type: ['h-entry'],
@@ -271,7 +290,4 @@ dwell.admin.kinds.listen.payload = function() {
   };
 };
 
-dwell.admin.publish = function(kind) {
-  let payload = dwell.admin.kinds[kind].payload(); 
-  alert(JSON.stringify(payload));
-};
+
