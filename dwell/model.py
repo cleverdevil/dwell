@@ -27,6 +27,14 @@ import arrow
 import duckdb
 
 
+class classproperty:
+    def __init__(self, func):
+        self.fget = func
+
+    def __get__(self, _, owner):
+        return self.fget(owner)
+
+
 class DatabaseManager:
     def __init__(self):
         self._conn = None
@@ -259,9 +267,9 @@ class Post:
 
     # convenience properties for metadata about this post's kind and
     # associated metadata
-    kind = property(lambda self: self.__kind__)
-    kind_name = property(lambda self: self.__kind_name__)
-    kind_icon = property(lambda self: self.__kind_icon__)
+    kind = classproperty(lambda self: self.__kind__)
+    kind_name = classproperty(lambda self: self.__kind_name__)
+    kind_icon = classproperty(lambda self: self.__kind_icon__)
 
     # convenience properties for fetching the raw, on-disk JSON representation
     # for this post, the MF2 data structure that has been parsed, and the HTML
