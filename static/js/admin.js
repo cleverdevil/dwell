@@ -246,6 +246,31 @@ dwell.admin.kinds.reply.payload = function() {
   };
 };
 
+dwell.admin.kinds.listen = {};
+dwell.admin.kinds.listen.payload = function() {
+  return {
+    type: ['h-entry'],
+    properties: {
+      'post-kind': ['Listen'],
+    },
+    children: [{
+      type: ['h-cite'],
+      properties: {
+        name: [
+          'Listened to ' + document.getElementById('listen-target-name').value
+        ],
+        'listen-of': [
+          document.getElementById('listen-target').value
+        ],
+        photo: [],
+        content: [{
+          html: document.getElementById('listen-content').innerHTML
+        }]
+      }
+    }]
+  };
+};
+
 dwell.admin.publish = function(kind) {
   let payload = dwell.admin.kinds[kind].payload(); 
   alert(JSON.stringify(payload));

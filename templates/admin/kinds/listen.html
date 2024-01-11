@@ -1,0 +1,36 @@
+<div class="min-w-100p">
+  <div class="form-group min-w-100p">
+    <label class="form-group-label text-l">Target</label>
+    <input type="text" id="listen-target" class="form-group-input" placeholder="https://"/>
+  </div>
+
+  <div class="form-group min-w-100p">
+    <label class="form-group-label text-l">Name</label>
+    <input type="text" id="listen-target-name" class="form-group-input" placeholder="What did you listen to?" />
+  </div>
+
+  <input type="file"/>
+
+  <div class="min-w-100p">
+    <div id="listen-content" class="min-w-100p"></div>
+  </div>
+  <script>
+    var quill = new Quill('#listen-content', {
+      theme: 'snow'
+    });
+  </script>
+</div>
+
+<style type="text/css">
+  .ql-toolbar.ql-snow {
+    padding: 8px 8px 0 8px !important;
+    height: 2.75rem !important;
+    background: #F8F9FA !important;
+  }
+  .ql-snow .ql-formats {
+    vertical-align: top !important;
+  }
+  .ql-editor {
+    background: white !important;
+  }
+</style>
