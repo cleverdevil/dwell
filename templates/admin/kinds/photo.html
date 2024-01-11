@@ -1,15 +1,15 @@
 <div class="min-w-100p">
-  <input type="file"/>
+  <input type="file" />
     
   <div class="form-group min-w-100p">
     <label class="form-group-label">Title</label>
-    <input type="text" class="form-group-input" placeholder="What is the title of your post?"/>
+    <input type="text" id="photo-name" class="form-group-input" placeholder="What is the title of your post?"/>
   </div>
   <div class="min-w-100p">
-    <div id="{{ kind_name}}-content-editor" class="min-w-100p"></div>
+    <div id="photo-content" class="min-w-100p"></div>
   </div>
   <script>
-    var quill = new Quill('#{{ kind_name}}-content-editor', {
+    var quill = new Quill('#photo-content', {
       theme: 'snow'
     });
   </script>

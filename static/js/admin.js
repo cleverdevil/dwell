@@ -290,4 +290,22 @@ dwell.admin.kinds.listen.payload = function() {
   };
 };
 
+/* Kind: Photo */
+dwell.admin.kinds.photo = {};
 
+dwell.admin.kinds.photo.payload = function() {
+  let payload = {
+    type: ['h-entry'],
+    properties: {
+      'post-kind': ['Photo'],
+      name: [document.getElementById('photo-name').value]
+    }
+  }
+  
+  let content = document.getElementById('photo-content').innerHTML;
+  // TODO: inject photo references
+  
+  payload.properties.content = [{html: content}];
+
+  return payload;
+};
