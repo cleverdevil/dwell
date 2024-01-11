@@ -1,1 +1,3 @@
-from .model import *
+'''
+Dwell project package.
+'''
