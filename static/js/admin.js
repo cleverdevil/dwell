@@ -40,6 +40,40 @@ dwell.admin.publish = function(kind) {
   alert(JSON.stringify(payload));
 };
 
+/* Notifications */
+dwell.notifications = {
+  SUCCESS: 'success',
+  WARN: 'warning',
+  ERROR: 'error',
+  INFO: 'info',
+  LINK: 'link',
+  PRIMARY: 'primary',
+  DARK: 'dark',
+  GRAY: 'gray',
+
+  notify: function(message, cls) {
+    let notice = document.createElement('div');
+    notice.classList.add('toast');
+    notice.classList.add('toast--' + cls);
+    notice.classList.add('animated');
+    notice.classList.add('bounceIn');
+    notice.style.position = 'fixed';
+    notice.style.top = '50%';
+    notice.style.left = '40%';
+    notice.style.width = '20%';
+    notice.style.zIndex = '10000000';
+    
+    let msg = document.createTextNode(message);
+    notice.appendChild(msg);
+
+    document.getElementsByTagName('main')[0].insertAdjacentElement('afterbegin', notice);
+    
+    setTimeout(function() {
+      notice.remove();
+    }, 3000);
+  }
+};
+
 /* Kind: Review */
 dwell.admin.kinds.review = {};
 
@@ -109,11 +143,10 @@ dwell.admin.kinds.recipe.addIngredient = function() {
   let ident = Math.ceil(Math.random()*1000000).toString();
   
   if (qty.value.length == 0 || name.value.length == 0) {
-    let error = document.getElementById('ingredient-warning');
-    error.style.display = '';
-    setTimeout(function() {
-      error.style.display = 'none';
-    }, 2000);
+    dwell.notifications.notify(
+      'All ingredients must have a quantity and name',
+      dwell.notifications.WARNING
+    );
     return;
   } 
 
