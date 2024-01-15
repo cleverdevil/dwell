@@ -35,9 +35,41 @@ dwell.admin.closePublishForm = function(kind_id) {
   frm.classList.toggle('u-none');
 };
 
-dwell.admin.publish = function(kind) {
+dwell.admin.publish = async function(kind) {
   let payload = dwell.admin.kinds[kind].payload(); 
-  alert(JSON.stringify(payload));
+
+  const response = await fetch("/micropub", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify(payload)
+  });
+  
+  if (response.ok) {
+    window.location.href = response.headers.get('location');
+  } else {
+    dwell.notifications.notify('Error publishing post');
+  }
+};
+
+dwell.admin.deletePost = async function(url) {
+  const response = await fetch("/micropub", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify({
+      action: 'delete',
+      url: url
+    })
+  });
+  
+  if (response.ok) {
+    window.location.href = '/'; 
+  } else {
+    dwell.notifications.notify('Error deleting post');
+  }
 };
 
 /* Notifications */
@@ -107,7 +139,7 @@ dwell.admin.kinds.review.setStarRating = function(rating) {
 
 dwell.admin.kinds.review.payload = function() {
   let payload = {
-    type: ['h-entry'],
+    type: ['h-;entry'],
     properties: {
       'post-kind': ['Review'],
       name: [
@@ -125,7 +157,7 @@ dwell.admin.kinds.review.payload = function() {
         document.getElementById('review-rating').value
       ],
       content: [{
-        html: document.getElementById('review-content').innerHTML
+        html: review_quill.getText() 
       }]
     }
   };
@@ -179,14 +211,18 @@ dwell.admin.kinds.recipe.payload = function() {
       ] 
     },
     children: [{
-      name: [document.getElementById('recipe-name').value],
-      photo: [],
-      ingredient: [],
-      duration: [document.getElementById('recipe-duration').value],
-      yield: [document.getElementById('recipe-yield').value],
-      instructions: [{
-        'html': document.getElementById('recipe-instructions').innerHTML
-      }]
+      type: [
+        'h-recipe'
+      ],
+      properties: {
+        name: [document.getElementById('recipe-name').value],
+        ingredient: [],
+        duration: [document.getElementById('recipe-duration').value],
+        yield: [document.getElementById('recipe-yield').value],
+        instructions: [{
+          'html': recipe_quill.getText() 
+        }]
+      }
     }]
   };
   
@@ -200,7 +236,7 @@ dwell.admin.kinds.recipe.payload = function() {
       'recipe-ingredient-name'
     )[0].value;
   
-    payload['children'][0]['ingredient'].push(qty + ' ' + name);
+    payload['children'][0]['properties']['ingredient'].push(qty + ' ' + name);
   });
 
   return payload;
@@ -218,7 +254,7 @@ dwell.admin.kinds.entry.payload = function() {
         document.getElementById('entry-name').value
       ], 
       content: [{
-        'html': document.getElementById('entry-content').innerHTML
+        'html': entry_quill.getText()
       }]
     }
   }
@@ -244,7 +280,7 @@ dwell.admin.kinds.like.payload = function() {
         document.getElementById('like-name').value
       ], 
       content: [{
-        'html': document.getElementById('like-content').innerHTML
+        'html': like_quill.getText() 
       }]
     }
   };
@@ -316,7 +352,7 @@ dwell.admin.kinds.listen.payload = function() {
         ],
         photo: [],
         content: [{
-          html: document.getElementById('listen-content').innerHTML
+          html: listen_quill.getText() 
         }]
       }
     }]
@@ -335,7 +371,7 @@ dwell.admin.kinds.photo.payload = function() {
     }
   }
   
-  let content = document.getElementById('photo-content').innerHTML;
+  let content = photo_quill.getText(); 
   // TODO: inject photo references
   
   payload.properties.content = [{html: content}];
