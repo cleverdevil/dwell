@@ -1,0 +1,51 @@
+{% extends "shell.html" %}
+
+{% block title %}Dwell - Login{% endblock %}
+
+{% block main %}
+<div class="u-center login-form">
+  <div class="frame mt-12 w-48">
+    <div class="frame__header px-4">
+      <div class="frame__title">
+        <h3>Dwell: Login</h3>
+      </div>
+    </div>
+    <div class="frame__body px-4 pb-4">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+          <div class="toast toast--warning w-100p m-0">
+            <p>{{ message }}</p>
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST">  
+        <div class="form-group input-control w-100p">
+          <label class="form-group-label">
+            <ion-icon name="person-circle"></ion-icon>
+          </label>
+          <input type="text" class="form-group-input" name="me" placeholder="https://your-site.com" />
+        </div>
+        
+        <div class="form-group input-control w-100p">
+          <label class="form-group-label">
+            <ion-icon name="lock-closed"></ion-icon>
+          </label>
+          <input type="password" class="form-group-input" name="password" placeholder="Password" />
+        </div>
+        
+        <button type="submit" class="w-100p btn-primary">Login</button>
+        
+        <div class="form-ext-control form-ext-checkbox w-100p u-center">
+          <input class="form-ext-input" type="checkbox" name="remember" id="remember" />
+          <label class="form-ext-label" for="remember">Remember me</label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

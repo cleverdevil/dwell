@@ -31,6 +31,7 @@ app = flask.Flask(
 )
 
 app.config.from_object("conf")
+app.secret_key = app.config["SESSION"]["key"]
 
 app.register_blueprint(site.blueprint)
 app.register_blueprint(indieauth.blueprint)

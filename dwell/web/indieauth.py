@@ -8,11 +8,13 @@ import datetime
 import hashlib
 import pathlib
 import uuid
+from functools import wraps
 from urllib.parse import urlencode
 
 import arrow
 import duckdb
 import flask
+import flask_login
 import jwt
 from flask.app import current_app as app
 
@@ -44,7 +46,13 @@ def require_auth(func):
     list of scopes provided in `flask.request.authorized_scopes`.
     """
 
+    @wraps(func)
     def wrap(*args, **kwargs):
+        # logged in users are provided all scopes by default
+        if flask_login.current_user:
+            flask.request.authorized_scopes = ["create", "update", "delete", "undelete"]
+            return func(*args, **kwargs)
+
         token = getattr(flask.request.authorization, "token", None)
         scopes = is_authorized(token)
         if scopes:

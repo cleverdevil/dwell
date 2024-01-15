@@ -59,8 +59,8 @@ def micropub_get():
         return post.json if post else None
 
 
-@indieauth.require_auth
 @blueprint.route("/micropub", methods=["POST"])
+@indieauth.require_auth
 def micropub_post():
     """
     HTTP POST /micropub

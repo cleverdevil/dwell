@@ -6,6 +6,14 @@
     {% endblock %}
     <link rel="stylesheet" href="/css/style.css">
 
+    <!-- dwell main javascript -->
+    <script src="/js/dwell.js" language="javascript"></script>
+
+    {% if current_user %}
+    <!-- dwell admin javascript -->
+    <script src="/js/admin.js" language="javascript"></script>
+    {% endif %}
+    
     <!-- Leaflet maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script type="text/javascript" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
