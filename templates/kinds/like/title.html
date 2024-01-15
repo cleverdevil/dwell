@@ -1,0 +1,13 @@
+<div class="card__header font-bold px-4 pt-2">
+  <div class="level">
+    <ion-icon class="level-item mr-1" name="{{ post.icon }}"></ion-icon>
+    {% if post.is_like %}
+      Liked 
+    {% elif post.is_bookmark %}
+      Bookmarked
+    {% else %}
+      Reposted
+    {% endif %}
+    <a href="{{ post.target }}" class="p-name level-item ml-1">{{ post.name }}</a>
+  </div>
+</div>

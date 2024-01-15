@@ -259,9 +259,8 @@ class Post:
         """
         Convenience property for the content record on this post.
         """
-
-        content = self.mf2["content"]
-        if content:
+        content = self.mf2.get("content", [{"html": "", "text": ""}])
+        if content and len(content):
             return content[0]
         return {}
 
@@ -462,9 +461,6 @@ class Bookmark(Post):
     is_bookmark = property(lambda self: bool(self.mf2.get("bookmark-of")))
     is_repost = property(lambda self: bool(self.mf2.get("repost-of")))
 
-    content = name
-    html = name
-
     @property
     def icon(self):
         if self.is_bookmark:
@@ -596,9 +592,11 @@ class ListenOf:
 
     def __init__(self, h_cite):
         self.name = h_cite["properties"].get("name", ["Listened To"])[0]
-        self.photo = h_cite["properties"].get("photo", [None])[0]
         self.content = h_cite["properties"]["content"][0]["html"]
         self.url = h_cite["properties"]["listen-of"][0]
+
+        if h_cite["properties"].get("photo"):
+            self.photo = h_cite["properties"].get("photo", [None])[0]
 
 
 class Listen(Post):
@@ -682,9 +680,12 @@ class ReviewOf:
     """
 
     def __init__(self, mf2):
-        self.photo = mf2["properties"]["photo"][0]
         self.url = mf2["properties"]["url"][0]
         self.name = mf2["properties"]["name"][0]
+        if mf2["properties"].get("photo"):
+            self.photo = mf2["properties"]["photo"][0]
+        else:
+            self.photo = None
 
 
 class Review(Post):

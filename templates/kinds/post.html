@@ -11,7 +11,7 @@
     
       <div class="tile__icon">
         <figure class="avatar">
-          <img src="https://cleverdevil.io/{{ post.author.photo }}" alt="Author Photo" />
+          <img src="{{ post.author.photo }}" alt="Author Photo" />
         </figure>
       </div>
 
@@ -45,9 +45,13 @@
     </div>
   </div>
 
-</article>
-
+  </article>
+  
 {% if detail == True %}
+  {% if current_user %}
+    <button onclick="dwell.admin.deletePost('{{ post.url }}')">Delete Post</button>
+  {% endif %}
+
   {% include "post-detail.html" %}
   </div>
 {% endif %}

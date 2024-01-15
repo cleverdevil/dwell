@@ -1,6 +1,10 @@
 <div class="h-cite">
   <a href="{{ post.listen_of.url }}">
+    {% if post.photo %}
     <img src="{{ post.listen_of.photo }}" style="float: left; padding-top: 0rem; margin: 3rem 2rem 1rem 0; max-width: 150px" class="u-photo">
+    {% else %}
+    {{ post.listen_of.name }}
+    {% endif %}
   </a>
   <p>{{ post.listen_of.content | safe }}</p>
   <div style="clear: both"></div>
