@@ -47,7 +47,14 @@ dwell.admin.publish = async function(kind) {
   });
   
   if (response.ok) {
-    window.location.href = response.headers.get('location');
+    dwell.notifications.notify(
+      'Published successfully. Please wait to be redirected to the post.',
+      dwell.notifications.SUCCESS,
+      7500
+    );
+    setTimeout(function() {
+      window.location.href = response.headers.get('location'); 
+    }, 7500);
   } else {
     dwell.notifications.notify('Error publishing post');
   }
@@ -66,7 +73,14 @@ dwell.admin.deletePost = async function(url) {
   });
   
   if (response.ok) {
-    window.location.href = '/'; 
+    dwell.notifications.notify(
+      'Post removed. Please wait to be redirected to the home page.',
+      dwell.notifications.SUCCESS,
+      7500
+    );
+    setTimeout(function() {
+      window.location.href = '/'; 
+    }, 7500);
   } else {
     dwell.notifications.notify('Error deleting post');
   }
@@ -83,7 +97,7 @@ dwell.notifications = {
   DARK: 'dark',
   GRAY: 'gray',
 
-  notify: function(message, cls) {
+  notify: function(message, cls, timeout) {
     let notice = document.createElement('div');
     notice.classList.add('toast');
     notice.classList.add('toast--' + cls);
@@ -100,9 +114,13 @@ dwell.notifications = {
 
     document.getElementsByTagName('main')[0].insertAdjacentElement('afterbegin', notice);
     
+    if (!timeout) {
+      timeout = 3000;
+    }
+
     setTimeout(function() {
       notice.remove();
-    }, 3000);
+    }, timeout);
   }
 };
 

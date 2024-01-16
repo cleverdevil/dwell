@@ -47,11 +47,13 @@
 
   </article>
   
-{% if detail == True %}
   {% if current_user %}
-    <button onclick="dwell.admin.deletePost('{{ post.url }}')">Delete Post</button>
+    <div class="w-100p u-center">
+      <button onclick="dwell.admin.deletePost('{{ post.url }}')">Delete Post</button>
+    </div>
   {% endif %}
 
-  {% include "post-detail.html" %}
+  {% if detail == True %}
+    {% include "post-detail.html" %}
   </div>
 {% endif %}
