@@ -7,15 +7,17 @@ from read_json_auto(
     format='auto',
     records=true,
     maximum_depth=1,
-    hive_partitioning='true',
-    filename='true'
+    hive_partitioning=true,
+    filename=true,
+    union_by_name=true
 );
 create view content as select
     properties->'post-id'->>0 "uuid",
     properties->'post-kind'->>0 "kind",
     properties->'url'->>0 "url",
     coalesce(
-        (properties->'deleted'->>0), false
+        json_extract("properties", '$."deleted"[0]'),
+        false
     )::JSON::BOOL "deleted",
     json_extract("properties",
         '$."published"[0]')::JSON::TIMESTAMP "published",

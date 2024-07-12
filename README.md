@@ -4,7 +4,7 @@ Dwell is a simple CMS for creating your own
 [indieweb](https://indieweb.org "IndieWeb") website, including support
 for [micropub](https://www.w3.org/TR/micropub/ "Micropub"),
 [indieauth](https://indieweb.org/IndieAuth "IndieAuth"), and
-[webmention](https://www.w3.org/TR/webmention/ "Webmention"). Dwell 
+[webmention](https://www.w3.org/TR/webmention/ "Webmention"). Dwell
 was created to power the personal site of
 [cleverdevil](https://cleverdevil.io "Jonathan LaCour"), which currently
 runs the [known](https://github.com/idno/known "Known") content
@@ -120,6 +120,7 @@ what is in-progress.
   - [x] Archive
   - [x] Now
   - [x] Overview
+  - [ ] Make all streams and post kinds use proper microformats
 - [ ] Forms for authenticated users to create all “kinds” of content
 - [x] Fixing ingestion for specific types and content that is missed
   - [x] Recipe
@@ -127,6 +128,6 @@ what is in-progress.
   - [x] Interactions (likes, primarily)
 
 At first, I will entirely focus on getting my own website fully
-functional on-top of Dwell, to enable me to migrate off of Known, but I am 
-actively seeking collaborators that are interested in a shared codebase for 
+functional on-top of Dwell, to enable me to migrate off of Known, but I am
+actively seeking collaborators that are interested in a shared codebase for
 building our own sites.

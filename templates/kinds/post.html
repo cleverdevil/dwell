@@ -2,34 +2,37 @@
  <div class="u-center mt-12 w-70p-lg w-100p-md">
 {% endif %}
 
-<article class="card w-100p kind-{{ post.kind }}" id="post-{{ post.uuid }}">
+<article class="card w-100p kind-{{ post.kind }}" id="post-{{ post.uuid }} h-entry">
 
-  {% include ['kinds/'+post.kind+'/title.html', 'kinds/generic/title.html'] %}
+  <span class="p-name">
+    {% include ['kinds/'+post.kind+'/title.html', 'kinds/generic/title.html'] %}
+  </span>
 
   <div class="content px-4 pt-3" style="margin-top: -2rem;">
     <div class="tile tile--center" style="display: none">
-    
+
       <div class="tile__icon">
         <figure class="avatar">
           <img src="{{ post.author.photo }}" alt="Author Photo" />
         </figure>
       </div>
 
-      <div class="tile__container">
-        <p class="tile__title">{{ post.author.name }}</p>
-        <p class="tile__subtitle"><a href="https://cleverdevil.io">cleverdevil.io</a></p>
+      <div class="tile__container h-card">
+        <p class="tile__title p-name">{{ post.author.name }}</p>
+        <p class="tile__subtitle"><a href="https://cleverdevil.io" class="p-url">cleverdevil.io</a></p>
       </div>
-    
+
     </div>
-    
-    {% include ['kinds/'+post.kind+'/content.html', 'kinds/generic/content.html'] %}
+    <span class="e-content">
+      {% include ['kinds/'+post.kind+'/content.html', 'kinds/generic/content.html'] %}
+    </span>
   </div>
-  
+
   <div class="card__action-bar px-4 row">
     <div class="col-6">
       <a class="u-url" href="{{ post.url }}" rel="permalink">
         <span>Published</span>
-        <time class="unk-dt-published" datetime="{{ post.published }}" title="">
+        <time class="unk-dt-published dt-published" datetime="{{ post.published }}" title="">
           {{ post.published.humanize() }}
         </time>
       </a>
@@ -46,8 +49,8 @@
   </div>
 
   </article>
-  
-  {% if current_user %}
+
+  {% if current_user and not current_user.is_anonymous %}
     <div class="w-100p u-center">
       <button onclick="dwell.admin.deletePost('{{ post.url }}')">Delete Post</button>
     </div>

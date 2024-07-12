@@ -64,7 +64,7 @@ def login():
         remember = True if flask.request.form.get("remember") else False
 
         if indieauth.verify_password(me, password):
-            flask_login.login_user(flask.current_app.User.get(me), remember=remember)
+            flask_login.login_user(User.get(me), remember=remember)
             return flask.redirect(flask.url_for("admin.index"))
 
         flask.flash("Invalid credentials. Try again.")

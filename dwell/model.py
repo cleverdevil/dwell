@@ -414,6 +414,7 @@ class Post:
             sql = "select count(*) from content" + " ".join(parts)
             if where:
                 sql += " where " + " and ".join(where)
+            print(sql)
             result = database.connection.sql(sql).fetchone()[0]
             return result
 
@@ -424,6 +425,8 @@ class Post:
             sql += " where " + " and ".join(where)
 
         sql += " " + " ".join(paging)
+
+        print(sql)
 
         results = database.connection.sql(sql)
         posts = []
